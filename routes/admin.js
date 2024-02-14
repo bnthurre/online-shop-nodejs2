@@ -15,7 +15,13 @@ const products = [];
 
 //using pug template
 router.get("/add-product", (req, res, next) => {
-  res.render('add-product',{pageTitle: 'add product', path: '/admin/add-product'})
+  res.render("add-product", {
+    pageTitle: "add product",
+    path: "/admin/add-product",
+    activeAddProduct: true,
+    formsCSS: true,
+    productCSS: true
+  });
 });
 
 router.post("/add-product", (req, res, next) => {
