@@ -7,7 +7,7 @@ const rootDir = require('./utils/rootDir');
 
 const app = express();
 
-app.engine('hbs', handlebars.engine());
+app.engine('hbs', handlebars.engine({ extname: 'hbs', defaultLayout: false }));
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
