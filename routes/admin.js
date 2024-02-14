@@ -15,7 +15,7 @@ const products = [];
 
 //using pug template
 router.get("/add-product", (req, res, next) => {
-  res.render('add-product',{pageTitle: 'add product'})
+  res.render('add-product',{pageTitle: 'add product', path: '/admin/add-product'})
 });
 
 router.post("/add-product", (req, res, next) => {
