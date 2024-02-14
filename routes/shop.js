@@ -5,9 +5,15 @@ const rootDir = require('../utils/rootDir');
 
 const router = express.Router();
 
-router.get('/', (req,res,next)=>{
-    console.log(adminData.products);
-    res.sendFile(path.join(rootDir,'views', 'shop.html'));
-})
+//using plain html
 
+// router.get('/', (req,res,next)=>{
+//     console.log(adminData.products);
+//     res.sendFile(path.join(rootDir,'views', 'shop.html'));
+// })
+
+//using pug template engine
+router.get('/', (req,res,next)=>{
+    res.render('shop');
+})
 module.exports = router;
