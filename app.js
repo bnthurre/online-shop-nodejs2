@@ -4,6 +4,7 @@ const handlebars = require("express-handlebars");
 const path = require("path");
 
 const rootDir = require("./utils/rootDir");
+const errorController = require('./controllers/error');
 
 const app = express();
 
@@ -37,8 +38,6 @@ app.use(shopRoute);
 //     res.status(404).render('404',{pageTitle: "page not found"});
 // })
 //using hbs
-app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "page not found" });
-});
+app.use(errorController.get404);
 
 app.listen(8001);
