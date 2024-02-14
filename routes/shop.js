@@ -14,6 +14,7 @@ const router = express.Router();
 
 //using pug template engine
 router.get('/', (req,res,next)=>{
-    res.render('shop');
+    const products = adminData.products;
+    res.render('shop' , {prods: products, pageTitle: "Shop"});
 })
 module.exports = router;
