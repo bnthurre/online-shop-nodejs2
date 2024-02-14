@@ -7,15 +7,15 @@ const rootDir = require("./utils/rootDir");
 
 const app = express();
 
-app.engine(
-  "hbs",
-  handlebars.engine({
-    extname: "hbs",
-    layoutsDir: "views/layouts",
-    defaultLayout: "main-layout",
-  })
-);
-app.set("view engine", "hbs");
+// app.engine(
+//   "hbs",
+//   handlebars.engine({
+//     extname: "hbs",
+//     layoutsDir: "views/layouts",
+//     defaultLayout: "main-layout",
+//   })
+// );
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminRoute = require("./routes/admin");
