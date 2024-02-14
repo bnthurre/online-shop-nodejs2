@@ -2,10 +2,10 @@ const express = require("express");
 const path = require("path");
 
 const rootDir = require("../utils/rootDir");
+const productController = require('../controllers/productController');
 
 const router = express.Router();
 
-const products = [];
 
 //using plain html
 
@@ -14,20 +14,8 @@ const products = [];
 // });
 
 //using pug template
-router.get("/add-product", (req, res, next) => {
-  res.render("add-product", {
-    pageTitle: "add product",
-    path: "/admin/add-product",
-    activeAddProduct: true,
-    formsCSS: true,
-    productCSS: true
-  });
-});
+router.get("/add-product",productController.getAddProduct );
 
-router.post("/add-product", (req, res, next) => {
-  products.push({ title: req.body.title });
-  res.redirect("/");
-});
+router.post("/add-product",productController.postAddProduct );
 
-exports.routes = router;
-exports.products = products;
+module.exports = router;
