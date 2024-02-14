@@ -17,14 +17,3 @@ app.use( (req,res,next)=>{
 app.listen(8001);
 
 
-//This app object is the central piece that allows you to define routes, handle middleware, and manage the behavior of your web server.
-
-
-//app instance do work of creating server so i dont need createserver function
-
-//middleware (req,res,next) functions that handle requests and send appriciate resbond
-
-//Routes =url determine what happens when a user accesses a certain URL on your server.
-
-
-//body-parser package parses what enter requests but not files
