@@ -1,6 +1,5 @@
 const Product = require("../models/productModel");
 
-
 //get products
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
@@ -13,13 +12,16 @@ exports.getProducts = (req, res, next) => {
 };
 
 //get single product
-exports.getProduct =(req,res,next)=>{
+exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId,product=>{
-    console.log(product);
-  })
-  res.redirect('/');
-}
+  Product.findById(prodId, (product) => {
+    res.render("shop/product-details", {
+      pageTitle: "product details",
+      product: product,
+      path: '/products'
+    });
+  });
+};
 
 //get start page
 exports.getIndex = (req, res, next) => {
@@ -34,10 +36,10 @@ exports.getIndex = (req, res, next) => {
 
 //
 exports.getCart = (req, res, next) => {
-    res.render("shop/cart", {
-      pageTitle: "your cart",
-      path: "/cart",
-    });
+  res.render("shop/cart", {
+    pageTitle: "your cart",
+    path: "/cart",
+  });
 };
 
 //get orders
@@ -49,8 +51,8 @@ exports.getOrders = (req, res, next) => {
 };
 //
 exports.getCheckout = (req, res, next) => {
-    res.render("shop/checkout", {
-      pageTitle: "checkouts",
-      path: "/checkout",
+  res.render("shop/checkout", {
+    pageTitle: "checkouts",
+    path: "/checkout",
   });
 };
