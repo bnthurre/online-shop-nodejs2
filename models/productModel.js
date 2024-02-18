@@ -22,6 +22,7 @@ module.exports = class Product {
     this.description =description;
   }
   save() {
+    this.id = id;
     getProductFromFile((products) => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), (err) => {
