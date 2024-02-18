@@ -8,9 +8,6 @@ exports.getProducts = (req, res, next) => {
       prods: products,
       pageTitle: "all products",
       path: "/products",
-      hasProduct: products.length > 0,
-      activeShop: true,
-      productCSS: true,
     });
   });
 };
@@ -22,9 +19,6 @@ exports.getIndex = (req, res, next) => {
       prods: products,
       pageTitle: "Shop",
       path: "/",
-      hasProduct: products.length > 0,
-      activeShop: true,
-      productCSS: true,
     });
   });
 };
