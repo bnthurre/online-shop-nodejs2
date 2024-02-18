@@ -10,24 +10,18 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
+//get admin products
+exports.getProducts = (req, res, next) => {
+    res.render("admin/products", {
+      pageTitle: "admin products",
+      path: "/admin/products",
+    });
+  };
+
 //post add product
 
 exports.postAddProduct = (req, res, next) => {
   const product = new Product(req.body.title);
   product.save();
   res.redirect("/");
-};
-
-//get products
-exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/product-list", {
-      prods: products,
-      pageTitle: "Shop",
-      path: "/",
-      hasProduct: products.length > 0,
-      activeShop: true,
-      productCSS: true,
-    });
-  });
 };

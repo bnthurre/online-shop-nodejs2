@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const rootDir = require("../utils/rootDir");
-const productController = require('../controllers/productController');
+const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
@@ -14,8 +14,14 @@ const router = express.Router();
 // });
 
 //using pug template
-router.get("/add-product",productController.getAddProduct );
+//get add product
+router.get("/add-product",adminController.getAddProduct );
 
-router.post("/add-product",productController.postAddProduct );
+//
+router.get("/products",adminController.getProducts);
+
+
+//post add product
+router.post("/add-product",adminController.postAddProduct );
 
 module.exports = router;

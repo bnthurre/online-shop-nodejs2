@@ -1,6 +1,5 @@
 const express = require("express");
-const path = require("path");
-const productController = require('../controllers/productController')
+const shopcontroller = require('../controllers/shop')
 const rootDir = require("../utils/rootDir");
 
 const router = express.Router();
@@ -13,5 +12,19 @@ const router = express.Router();
 // })
 
 //using pug template engine
-router.get("/", productController.getProducts);
+router.get("/", shopcontroller.getIndex);
+
+//products
+router.get("/products",shopcontroller.getProducts);
+
+//cart
+router.get("/cart",shopcontroller.getCart);
+
+//checkout
+router.get("/checkout",shopcontroller.getCheckout);
+
+
+
+
+
 module.exports = router;
