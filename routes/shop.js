@@ -17,6 +17,10 @@ router.get("/", shopcontroller.getIndex);
 //products
 router.get("/products",shopcontroller.getProducts);
 
+//
+router.get("/products/:productId", shopcontroller.getProduct);
+
+
 //cart
 router.get("/cart",shopcontroller.getCart);
 

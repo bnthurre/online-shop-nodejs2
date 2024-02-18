@@ -12,6 +12,13 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
+//get single product
+exports.getProduct =(req,res,next)=>{
+  const prodId = req.params.productId;
+  console.log(prodId);
+  res.redirect('/');
+}
+
 //get start page
 exports.getIndex = (req, res, next) => {
   Product.fetchAll((products) => {
