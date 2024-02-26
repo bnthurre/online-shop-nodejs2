@@ -1,4 +1,4 @@
-const products = [];
+
 const fs = require("fs");
 const path = require("path");
 const p = path.join(
@@ -22,7 +22,9 @@ module.exports = class Product {
     this.description =description;
   }
   save() {
+    //make id every product saved
     this.id = Math.random().toString();
+    
     getProductFromFile((products) => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), (err) => {
