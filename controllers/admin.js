@@ -8,19 +8,8 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
-// exports.getAddProductApi = (req, res, next) => {
-//   try {
-//     Product.fetchAll((products) => {
-//       res.json({
-//         prods: products,
-//         pageTitle: "admin products",
-//         path: "/admin/products",
-//       });
-//     });
-//   } catch (error) {
 
-//   }
-// };
+
 //post add product
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
@@ -50,6 +39,30 @@ exports.getEditProduct = (req, res, next) => {
       product: product
     });
   });
+};
+
+//post edit product to the admin product page
+exports.postEditProduct = (req, res, next) => {
+  //fetch information for  the product and store new propprty
+  const prodId = req.body.productId; // this id is written from hidden inpt
+  const updatedTitle = req.body.title;
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedPrice = req.body.price;
+  const updatedDesc = req.body.description;
+
+  //store updated data to the model
+  const updatedProduct = new Product(
+    prodId,
+    updatedTitle,
+    updatedImageUrl,
+    updatedPrice,
+    updatedDesc
+  );
+  // call save function to save updated product
+  updatedProduct.save();
+
+    // Redirect to the /admin/products page
+  res.redirect('/admin/products');
 };
 
 //get admin products
