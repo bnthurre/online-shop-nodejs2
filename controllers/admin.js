@@ -75,3 +75,10 @@ exports.getProducts = (req, res, next) => {
     });
   });
 };
+
+
+//delete by Id
+exports.deleteProduct= (req,res,next)=>{
+const prodId = req.body.productId;
+
+}
