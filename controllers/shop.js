@@ -1,14 +1,19 @@
 const Product = require("../models/product");
 const Cart = require("../models/cart");
 //get products
+
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/product-list", {
-      prods: products,
-      pageTitle: "all products",
-      path: "/products",
+  Product.fetchAll()
+    .then(([rows, fileData]) => {
+      res.render("shop/index", {
+        prods: rows,
+        pageTitle: "Shop",
+        path: "/",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 //get single product
