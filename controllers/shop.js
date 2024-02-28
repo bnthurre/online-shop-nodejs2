@@ -1,4 +1,4 @@
-const Product = require("../models/productModel");
+const Product = require("../models/product");
 const Cart = require("../models/cart");
 //get products
 exports.getProducts = (req, res, next) => {
@@ -25,13 +25,17 @@ exports.getProduct = (req, res, next) => {
 
 //get start page
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/index", {
-      prods: products,
-      pageTitle: "Shop",
-      path: "/",
+  Product.fetchAll()
+    .then(([rows, fileData]) => {
+      res.render("shop/index", {
+        prods: rows,
+        pageTitle: "Shop",
+        path: "/",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 //
