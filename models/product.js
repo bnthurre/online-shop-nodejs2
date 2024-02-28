@@ -11,13 +11,15 @@ module.exports = class Product {
 
   save() {
     return db.execute(
-      "INSERT INTO products (title, price, imageurl, description) values(?,?,?,?)",
-      [this.title, this.price, this.imageUrl, this.description]
+      "INSERT INTO products (title, price, description,imageurl) values(?,?,?,?)",
+      [this.title, this.price, this.description, this.imageUrl]
     );
   }
   static deleteById() {}
   static fetchAll() {
     return db.execute("SELECT * FROM products");
   }
-  static findById() {}
+  static findById(id) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id])
+  }
 };
