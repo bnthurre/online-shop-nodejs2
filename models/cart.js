@@ -47,6 +47,9 @@ module.exports = class Cart {
           const updatedCart = { ...JSON.parse(filecontent )};
           //check do we have product in the cart
           const product = updatedCart.products.find((prod) => prod.id === id);
+          if(!product){
+            return;
+          }
           //find out what quantity is
           const productQty = product.qty;
           //update products in the cart
