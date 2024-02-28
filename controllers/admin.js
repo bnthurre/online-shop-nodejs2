@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const Producta = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
   res.render("admin/edit-product", {
@@ -8,17 +9,21 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
-
-
 //post add product
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(null,title, imageUrl, price, description);
-  product.save();
-  res.redirect("/");
+  const product = new Producta(null, title, imageUrl, price, description);
+  product
+    .save()
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 //get edit product
@@ -36,7 +41,7 @@ exports.getEditProduct = (req, res, next) => {
       pageTitle: "edit product",
       path: "/admin/edit-product",
       editing: editMode,
-      product: product
+      product: product,
     });
   });
 };
@@ -61,8 +66,8 @@ exports.postEditProduct = (req, res, next) => {
   // call save function to save updated product
   updatedProduct.save();
 
-    // Redirect to the /admin/products page
-  res.redirect('/admin/products');
+  // Redirect to the /admin/products page
+  res.redirect("/admin/products");
 };
 
 //get admin products
@@ -75,7 +80,6 @@ exports.getProducts = (req, res, next) => {
     });
   });
 };
-
 
 //delete by Id
 exports.postdeleteProduct = (req, res, next) => {
