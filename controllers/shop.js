@@ -3,12 +3,12 @@ const Cart = require("../models/cart");
 
 //get products
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fileData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render("shop/product-list", {
-        prods: rows,
-        pageTitle: "Shop",
-        path: "/",
+        prods: products,
+        pageTitle: "all products",
+        path: "/products",
       });
     })
     .catch((err) => {
@@ -34,10 +34,10 @@ exports.getProduct = (req, res, next) => {
 
 //get start page
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fileData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render("shop/index", {
-        prods: rows,
+        prods: products,
         pageTitle: "Shop",
         path: "/",
       });
