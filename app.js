@@ -48,12 +48,12 @@ app.use(shopRoute);
 //using hbs
 app.use(errorController.get404);
 sequelize
-  .sync()
+  .sync({force: true})
   .then((result) => {
-    console.log(result);
+    app.listen(8001);
   })
   .catch((err) => {
     console.log(err);
   });
 
-app.listen(8001);
+

@@ -1,5 +1,5 @@
-const Product = require("../models/productModel");
-const Producta = require("../models/product");
+// const Product = require("../models/productModel");
+const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
   res.render("admin/edit-product", {
@@ -15,16 +15,16 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Producta(null, title, imageUrl, price, description);
-  product
-    .save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
+  Product.create({
+    title: title,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+  }).then(result=>{
+    console.log(result)
+  }).catch(err=>{
+    console.log(err);
+  });
 };
 
 //get edit product
@@ -89,9 +89,7 @@ exports.postdeleteProduct = (req, res, next) => {
   res.redirect("/admin/products");
 };
 
-
-
-// //post add product using file 
+// //post add product using file
 // exports.postAddProduct = (req, res, next) => {
 //   const title = req.body.title;
 //   const imageUrl = req.body.imageUrl;
@@ -100,4 +98,23 @@ exports.postdeleteProduct = (req, res, next) => {
 //   const product = new Product(null, title, imageUrl, description, price);
 //   product.save();
 //   res.redirect('/');
+// };
+
+// //post add product using sql query
+// //post add product
+// exports.postAddProduct = (req, res, next) => {
+//   const title = req.body.title;
+//   const imageUrl = req.body.imageUrl;
+//   const price = req.body.price;
+//   const description = req.body.description;
+//   const product = new Producta(null, title, imageUrl, price, description);
+//   product
+//     .save()
+//     .then(() => {
+//       res.redirect("/");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       throw err;
+//     });
 // };
