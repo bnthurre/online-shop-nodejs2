@@ -48,7 +48,7 @@ app.use(shopRoute);
 //using hbs
 app.use(errorController.get404);
 sequelize
-  .sync({force: true})
+  .sync()
   .then((result) => {
     app.listen(8001);
   })
