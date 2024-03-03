@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const handlebars = require("express-handlebars");
 const path = require("path");
+const product = require('./models/product');
+const user = require('./models/user');
 
 const errorController = require("./controllers/error");
 const sequelize = require("./utils/database");
@@ -47,8 +49,11 @@ app.use(shopRoute);
 // })
 //using hbs
 app.use(errorController.get404);
+
+product.belongsTo(user, {constraints: true, onDelete: 'cascade'});
+user.hasMany(product);
 sequelize
-  .sync()
+  .sync({force: true})
   .then((result) => {
     app.listen(8001);
   })
