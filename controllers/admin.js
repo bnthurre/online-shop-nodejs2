@@ -20,11 +20,13 @@ exports.postAddProduct = (req, res, next) => {
     price: price,
     imageUrl: imageUrl,
     description: description,
-  }).then(result=>{
-    console.log(result)
-  }).catch(err=>{
-    console.log(err);
-  });
+  })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 //get edit product
@@ -73,13 +75,17 @@ exports.postEditProduct = (req, res, next) => {
 
 //get admin products
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("admin/products", {
-      prods: products,
-      pageTitle: "admin products",
-      path: "/admin/products",
+  Product.findAll()
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        pageTitle: "admin products",
+        path: "/admin/products",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 //delete by Id
@@ -117,4 +123,17 @@ exports.postdeleteProduct = (req, res, next) => {
 //       console.log(err);
 //       throw err;
 //     });
+// };
+
+//using sql query
+
+// //get admin products
+// exports.getProducts = (req, res, next) => {
+//   Product.fetchAll((products) => {
+//     res.render("admin/products", {
+//       prods: products,
+//       pageTitle: "admin products",
+//       path: "/admin/products",
+//     });
+//   });
 // };
