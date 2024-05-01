@@ -108,6 +108,8 @@ exports.postdeleteProduct = (req, res, next) => {
         .destroy()
         .then((result) => {
           console.log("deleted");
+          res.redirect("/admin/products");
+
         })
         .catch((err) => {
           console.log(err);
@@ -116,7 +118,6 @@ exports.postdeleteProduct = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-  res.redirect("/admin/products");
 };
 
 // //post add product using file

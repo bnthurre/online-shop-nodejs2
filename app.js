@@ -23,6 +23,7 @@ app.set("views", "views");
 
 const adminRoute = require("./routes/admin");
 const shopRoute = require("./routes/shop");
+const User = require("./models/user");
 
 // db.execute("SELECT * FROM products")
 //   .then((result) => {
@@ -35,6 +36,16 @@ const shopRoute = require("./routes/shop");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+
+app.use((req, res, next) => {
+  User.findByPk(1).then(user => {
+    req.user = user;
+    next()
+  }
+  ).catch(err => {
+    console.log(err)
+  })
+})
 app.use("/admin", adminRoute);
 app.use(shopRoute);
 
@@ -50,13 +61,29 @@ app.use(shopRoute);
 //using hbs
 app.use(errorController.get404);
 
-product.belongsTo(user, {constraints: true, onDelete: 'cascade'});
+
+//associations
+product.belongsTo(user, { constraints: true, onDelete: 'cascade' });
 user.hasMany(product);
+
 sequelize
-  .sync({force: true})
+  // .sync({force: true})
+  .sync()
   .then((result) => {
-    app.listen(8001);
+    return User.findByPk(1);
   })
+  .then(user => {
+    if (!user) {
+      return User.create({ name: "Bushra", email: "bushra@gmail.com" })
+    }
+    return user;
+  })
+  .then(user => {
+    console.log(user)
+    app.listen(8001);
+
+  })
+
   .catch((err) => {
     console.log(err);
   });
