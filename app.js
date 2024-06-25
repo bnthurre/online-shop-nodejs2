@@ -1,12 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const handlebars = require("express-handlebars");
 const path = require("path");
-const product = require('./models/product');
-const user = require('./models/user');
 
+const mongoConnect = require('./utils/database')
 const errorController = require("./controllers/error");
-const sequelize = require("./utils/database");
+
 
 const app = express();
 
@@ -21,11 +19,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const adminRoute = require("./routes/admin");
-const shopRoute = require("./routes/shop");
-const User = require("./models/user");
-const Cart = require("./models/cart")
-const CartItem = require("./models/cartItem")
+// const adminRoute = require("./routes/admin");
+// const shopRoute = require("./routes/shop");
+
 
 // db.execute("SELECT * FROM products")
 //   .then((result) => {
@@ -40,16 +36,16 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use((req, res, next) => {
-  User.findByPk(1).then(user => {
-    req.user = user;
-    next()
-  }
-  ).catch(err => {
-    console.log(err)
-  })
+  // User.findByPk(1).then(user => {
+  //   req.user = user;
+  //   next()
+  // }
+  // ).catch(err => {
+  //   console.log(err)
+  // })
 })
-app.use("/admin", adminRoute);
-app.use(shopRoute);
+// app.use("/admin", adminRoute);
+// app.use(shopRoute);
 
 //using plain html
 // app.use( (req,res,next)=>{
@@ -63,34 +59,9 @@ app.use(shopRoute);
 //using hbs
 app.use(errorController.get404);
 
-
-//associations
-product.belongsTo(user, { constraints: true, onDelete: 'cascade' });
-user.hasMany(product);
-user.hasOne(Cart);
-Cart.belongsTo(user);
-Cart.belongsToMany(product, {through: CartItem})
-product.belongsToMany(Cart, {through: CartItem})
-sequelize
-  .sync({force: true})
-  // .sync()
-  .then((result) => {
-    return User.findByPk(1);
-  })
-  .then(user => {
-    if (!user) {
-      return User.create({ name: "Bushra", email: "bushra@gmail.com" })
-    }
-    return user;
-  })
-  .then(user => {
-    console.log(user)
-    app.listen(8001);
-
-  })
-
-  .catch((err) => {
-    console.log(err);
-  });
+mongoConnect((client)=>{
+  console.log(client)
+  app.listen(7001)
+})
 
 
