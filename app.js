@@ -19,7 +19,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// const adminRoute = require("./routes/admin");
+const adminRoute = require("./routes/admin");
 // const shopRoute = require("./routes/shop");
 
 
@@ -44,7 +44,7 @@ app.use((req, res, next) => {
   //   console.log(err)
   // })
 })
-// app.use("/admin", adminRoute);
+app.use("/admin", adminRoute);
 // app.use(shopRoute);
 
 //using plain html
