@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const mongoConnect = require('./utils/database')
+const mongoConnect = require('./utils/database').mongoConnect
 const errorController = require("./controllers/error");
 
 
@@ -43,6 +43,7 @@ app.use((req, res, next) => {
   // ).catch(err => {
   //   console.log(err)
   // })
+  next()
 })
 app.use("/admin", adminRoute);
 // app.use(shopRoute);

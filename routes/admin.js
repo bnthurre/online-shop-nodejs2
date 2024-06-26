@@ -1,7 +1,4 @@
 const express = require("express");
-const path = require("path");
-
-const rootDir = require("../utils/rootDir");
 const adminController = require('../controllers/admin');
 
 const router = express.Router();
@@ -14,21 +11,23 @@ const router = express.Router();
 // });
 
 //using pug template
+
+
 //get add product
 router.get("/add-product",adminController.getAddProduct );
 
 //
-router.get("/products",adminController.getProducts);
+// router.get("/products",adminController.getProducts);
 
 
 //post add product
 router.post("/add-product",adminController.postAddProduct );
 
-//get edit product
-router.get('/edit-product/:productId', adminController.getEditProduct)
+// //get edit product
+// router.get('/edit-product/:productId', adminController.getEditProduct)
 
-router.post('/edit-product', adminController.postEditProduct);
+// router.post('/edit-product', adminController.postEditProduct);
 
-router.post('/delete-product',adminController.postdeleteProduct)
+// router.post('/delete-product',adminController.postdeleteProduct)
 
 module.exports = router;
