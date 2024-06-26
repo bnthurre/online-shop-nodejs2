@@ -59,8 +59,7 @@ app.use("/admin", adminRoute);
 //using hbs
 app.use(errorController.get404);
 
-mongoConnect((client)=>{
-  console.log(client)
+mongoConnect(()=>{
   app.listen(7001)
 })
 
