@@ -10,10 +10,16 @@ class Product {
     }
     save() {
         const db = getDb();
-        db.colllection('products').insertOne(this)
-            .then((result) => console.log(result))
-            .catch((err) => console.log(err))
-
+        return db.collection('products').insertOne(this)
+        .then((result) => {
+            console.log('Insertion Result:', result);
+            return result;
+        })
+        .catch((err) => {
+            console.log('Insertion Error:', err);
+            throw err;
+        });
     }
+    
 }
 module.exports = Product

@@ -1,20 +1,20 @@
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient
 let _db;
-const mongoConnect =(callback)=>{
+const mongoConnect = (callback) => {
     MongoClient.connect("mongodb+srv://bnthurre:Bushra24@budget.ghiygmo.mongodb.net/?retryWrites=true&w=majority&appName=budget")
-.then(client => {
-    console.log("Connected")
-    _db = client.db()
-    callback(client)
-    // throw Error;
-}).catch(err => {
-    console.log(err)
-})
+        .then(client => {
+            console.log("Connected")
+            _db = client.db()
+            callback(client)
+            // throw Error;
+        }).catch(err => {
+            console.log(err)
+        })
 
 }
-const getDb =()=>{
-    if(_db){
+const getDb = () => {
+    if (_db) {
         return _db;
     }
     throw "No database found"
