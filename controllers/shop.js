@@ -1,19 +1,19 @@
-const Product = require("../models/product");
+const Product = require("../models/ProductMdl");
 const Cart = require("../models/cart");
 
 //get products
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
-    .then((products) => {
-      res.render("shop/product-list", {
-        prods: products,
-        pageTitle: "all products",
-        path: "/products",
+  Product.fetchAll()
+      .then((products) => {
+          res.render('shop/product-list', {
+              prods: products,
+              pageTitle: 'All Products',
+              path: '/products',
+          });
+      })
+      .catch((err) => {
+          console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 //get single product
@@ -46,7 +46,7 @@ exports.getProduct = (req, res, next) => {
 
 //get start page
 exports.getIndex = (req, res, next) => {
-  Product.findAll()
+  Product.fetchAll()
     .then((products) => {
       res.render("shop/index", {
         prods: products,
@@ -119,6 +119,31 @@ exports.getCheckout = (req, res, next) => {
     path: "/checkout",
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // //get all products using file
 // exports.getProducts = (req, res, next) => {

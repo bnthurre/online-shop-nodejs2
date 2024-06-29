@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminRoute = require("./routes/admin");
-// const shopRoute = require("./routes/shop");
+const shopRoute = require("./routes/shop");
 
 
 // db.execute("SELECT * FROM products")
@@ -46,7 +46,7 @@ app.use((req, res, next) => {
   next()
 })
 app.use("/admin", adminRoute);
-// app.use(shopRoute);
+app.use(shopRoute);
 
 //using plain html
 // app.use( (req,res,next)=>{

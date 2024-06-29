@@ -17,26 +17,26 @@ router.get("/", shopcontroller.getIndex);
 //products
 router.get("/products",shopcontroller.getProducts);
 
-//
-router.get("/products/:productId", shopcontroller.getProduct);
+// //
+// router.get("/products/:productId", shopcontroller.getProduct);
 
 
-//cart
-router.get("/cart",shopcontroller.getCart);
+// //cart
+// router.get("/cart",shopcontroller.getCart);
 
-//post cart
-router.post("/cart",shopcontroller.postCart);
+// //post cart
+// router.post("/cart",shopcontroller.postCart);
 
-// dlete cart
-router.post('/cart-delete-cart', shopcontroller.postDeleteCart)
-
-
-//orders
-router.get("/orders",shopcontroller.getOrders);
+// // dlete cart
+// router.post('/cart-delete-cart', shopcontroller.postDeleteCart)
 
 
-//checkout
-router.get("/checkout",shopcontroller.getCheckout);
+// //orders
+// router.get("/orders",shopcontroller.getOrders);
+
+
+// //checkout
+// router.get("/checkout",shopcontroller.getCheckout);
 
 
 
