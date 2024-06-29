@@ -31,7 +31,7 @@ exports.getProduct = (req, res, next) => {
   //     console.log(err);
   //   });
   //   //another way
-  Product.findByPk(prodId)
+  Product.findById(prodId)
     .then((product) => {
       res.render("shop/product-details", {
         pageTitle: "product details",
