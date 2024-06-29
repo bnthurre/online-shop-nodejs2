@@ -28,7 +28,22 @@ exports.postAddProduct = (req, res, next) => {
 
 
 
-
+//get admin products
+exports.getProducts = (req, res, next) => {
+  // Product.findAll()
+  // req.user.getProducts()
+  Product.fetchAll()
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        pageTitle: "admin products",
+        path: "/admin/products",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 
 
