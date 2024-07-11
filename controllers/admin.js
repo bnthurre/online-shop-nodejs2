@@ -94,7 +94,19 @@ exports.postEditProduct = (req, res, next) => {
 
 };
 
+// delete by Id
+exports.postdeleteProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+ Product.deleteById(prodId)
+        .then((result) => {
+          console.log("deleted");
+          res.redirect("/admin/products");
 
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+};
 
 
 
